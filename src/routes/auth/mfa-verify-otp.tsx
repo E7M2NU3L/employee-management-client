@@ -1,7 +1,96 @@
-const MfaVerifyOtp = () => {
+import { MotionGrids } from "@/components/auth/motion-grids"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
+import { toast } from "@/hooks/use-toast"
+import { VerifyUserOTPSchema } from "@/schemas/users"
+import { VerifyUserOtpTypes } from "@/types/users"
+import { AppErr } from "@/utils/app-err"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Loader2 } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
+
+const MFaVerifyOTP = () => {
+  const form = useForm<VerifyUserOtpTypes>({
+    resolver : zodResolver(VerifyUserOTPSchema),
+    defaultValues : {
+      otp : ""
+    }
+  });
+
+  const navigate = useNavigate();
+  async function handleVerifyOTP(values : VerifyUserOtpTypes) {
+    try {
+      console.log(values);
+      toast({
+        title : "Success",
+        description : "OTP has been verified successfully"
+      })
+      navigate("/employees");
+    } catch (error) {
+      AppErr(error);
+    }
+  }
+
   return (
-    <div>MfaVerifyOtp</div>
+    <MotionGrids>
+      <Card>
+        <CardHeader>
+          <CardTitle>
+            Verify your account
+          </CardTitle>
+          <CardDescription>
+            Enter your otp to verify your user account
+          </CardDescription>
+        </CardHeader>
+
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(handleVerifyOTP)} className="space-y-4">
+              <FormField control={form.control} name="otp" render={({field}) => (
+                <FormItem>
+                  <FormLabel>
+                    OTP
+                  </FormLabel>
+                  <FormControl>
+                  <InputOTP maxLength={6} {...field}>
+                  <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                  </InputOTPGroup>
+                </InputOTP>
+                  </FormControl>
+                </FormItem>
+              )} />
+
+              <Button variant={"default"} size={"sm"} className="w-full">
+                {form.formState.isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-1 w-4 h-4 animate-spin" />
+                    Verifying
+                  </>
+                ) : (
+                  <>
+                   Verify Account
+                  </>
+                )}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </MotionGrids>
   )
 }
 
-export default MfaVerifyOtp
+export default MFaVerifyOTP
