@@ -10,6 +10,7 @@ import ResetPassword from './routes/auth/reset-password';
 import MfaVerifyOtp from './routes/auth/mfa-verify-otp';
 import Main from './layouts/main';
 import Employee from './routes/dashboard/employee';
+import Department from './routes/dashboard/department';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
 
           <Route element={<Main />}>
             <Route path='/employees' element={<Employee />} />
+            <Route path='/departments' element={<Department />} />
           </Route>
         </Routes>
       </BrowserRouter>

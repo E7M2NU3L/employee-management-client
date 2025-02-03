@@ -1,3 +1,4 @@
+import { Badge } from "../ui/badge";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import DeleteEmployee from "./delete-employee";
 import SingleEmployee from "./single-employee";
@@ -7,8 +8,11 @@ const EmployeeCard = () => {
   return (
     <Card className="relative">
         <CardHeader>
-            <CardTitle>
+            <CardTitle className="flex flex-row gap-2 items-center">
                 Emmanuel A
+                <Badge>
+                    HR
+                </Badge>
             </CardTitle>
             <CardDescription>
                 aemmanuel.codes@gmail.com

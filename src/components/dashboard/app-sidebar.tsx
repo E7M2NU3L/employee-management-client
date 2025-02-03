@@ -1,4 +1,4 @@
-import { LogOut, PersonStanding} from "lucide-react"
+import { Group, LogOut, PersonStanding} from "lucide-react"
 
 import {
   Sidebar,
@@ -24,6 +24,11 @@ const items = [
     title: "Employees",
     url: "/employees",
     icon: PersonStanding,
+  },
+  {
+    title: "Departments",
+    url: "/departments",
+    icon: Group,
   },
 ]
 

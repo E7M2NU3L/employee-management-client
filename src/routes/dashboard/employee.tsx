@@ -1,9 +1,30 @@
 import CreateEmployee from "@/components/dashboard/create-employee"
 import EmployeeCard from "@/components/dashboard/employee-card"
+import { Input } from "@/components/ui/input"
+import { useState } from "react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import EmployeeTable from "@/components/dashboard/employee-table";
 
 const Employee = () => {
+  const [layout, setLayout] = useState<string>("grid");
+  const [search, setSearch] = useState<string>("");
   return (
-    <div className="p-4">
+    <div className="p-4 relative">
       <main className="min-h-[10vh] flex justify-between items-center flex-wrap gap-4">
         <main className="flex flex-col gap-1">
           <h1 className="text-2xl font-semibold">
@@ -14,14 +35,97 @@ const Employee = () => {
           </p>
         </main>
 
-        <CreateEmployee />
+        <main className="flex flex-row items-center gap-3">
+          <Select onValueChange={setLayout} defaultValue={layout}>
+              <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="choose layout" />
+              </SelectTrigger>
+              <SelectContent>
+              <SelectItem value="grid">grid</SelectItem>
+              <SelectItem value="table">table</SelectItem>
+              </SelectContent>
+            </Select>
+          <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search Employee" className="placeholder:text-sm" />
+          <CreateEmployee />
+        </main>
       </main>
 
-      <main className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-3">
-        {[0,1,2,3,4,5,6].map((_, index) => (
-          <EmployeeCard key={index} />
-        ))}
-      </main>
+      <section>
+        {layout === "grid" && (
+          <>
+            <main className="my-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-3">
+              {[0,1,2,3,4,5,6].map((_, index) => (
+                <EmployeeCard key={index} />
+              ))}
+            </main>
+
+            <main className="h-full w-full">
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious href="#" />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">3</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">4</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext href="#" />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </main>
+          </>
+        )}
+      </section>
+
+      <section>
+        {layout === 'table' && (
+          <>
+          <main className="my-6">
+            <EmployeeTable />
+          </main>
+          <main className="h-full w-full">
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious href="#" />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">3</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">4</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext href="#" />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </main>
+          </>
+        )}
+      </section>
     </div>
   )
 }
