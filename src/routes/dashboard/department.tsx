@@ -35,7 +35,7 @@ const Department = () => {
         </p>
       </main>
 
-      <main className="flex flex-row items-center gap-3">
+      <main className="flex flex-row items-center gap-3 flex-wrap">
             <Select onValueChange={setLayout} defaultValue={layout}>
                 <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="choose layout" />
