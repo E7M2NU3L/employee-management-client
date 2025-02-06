@@ -8,7 +8,7 @@ const Main = () => {
         <SidebarProvider>
             <AppSidebar />
             <main className='relative flex-1'>
-                <main className='absolute top-1 left-1'>
+                <main className='absolute top-1 left-1 z-10'>
                     <SidebarTrigger />
                 </main>
                 <Outlet />

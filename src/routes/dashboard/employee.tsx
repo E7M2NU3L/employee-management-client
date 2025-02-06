@@ -24,13 +24,13 @@ const Employee = () => {
   const [layout, setLayout] = useState<string>("grid");
   const [search, setSearch] = useState<string>("");
   return (
-    <div className="p-4 relative">
-      <main className="min-h-[10vh] flex justify-between items-center flex-wrap gap-4">
+    <div className="p-0 md:p-4 relative">
+      <main className="min-h-[10vh] flex p-4 md:p-0 justify-between items-center flex-wrap gap-4">
         <main className="flex flex-col gap-1">
           <h1 className="text-2xl font-semibold">
             Employees
           </h1>
-          <p className="text-sm font-light text-muted-foreground tracking-tight">
+          <p className="text-sm break-words whitespace-normal font-light text-muted-foreground tracking-tight">
             Create and manage your Employee database securely with <span className="text-primary">ETrack</span>
           </p>
         </main>

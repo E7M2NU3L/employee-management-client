@@ -24,14 +24,14 @@ const Department = () => {
     const [layout, setLayout] = useState<string>("grid");
     const [search, setSearch] = useState<string>("");
   return (
-    <div className="p-4">
-    <main className="min-h-[10vh] flex justify-between items-center flex-wrap gap-4">
+    <div className="p-0 md:p-4">
+    <main className="min-h-[10vh] p-4 md:p-0 flex justify-between items-center flex-wrap gap-4">
       <main className="flex flex-col gap-1">
         <h1 className="text-2xl font-semibold">
           Departments
         </h1>
-        <p className="text-sm font-light text-muted-foreground tracking-tight">
-          Create and manage departments in your company database securely with <span className="text-primary">ETrack</span>
+        <p className="text-sm font-light text-muted-foreground tracking-tight break-words whitespace-normal">
+        Create and manage departments in your company database securely with <span className="text-primary">ETrack</span>
         </p>
       </main>
 
