@@ -37,7 +37,7 @@ const Department = () => {
 
       <main className="flex flex-row items-center gap-3 flex-wrap">
             <Select onValueChange={setLayout} defaultValue={layout}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-[20vh]">
                 <SelectValue placeholder="choose layout" />
                 </SelectTrigger>
                 <SelectContent>
@@ -45,7 +45,7 @@ const Department = () => {
                 <SelectItem value="table">table</SelectItem>
                 </SelectContent>
             </Select>
-          <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search Departments" className="placeholder:text-sm" />
+          <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search Departments" className="placeholder:text-sm w-[20vh]" />
           <CreateDepartment />
         </main>
     </main>
